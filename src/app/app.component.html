@@ -208,6 +208,43 @@
     margin: 0;
   }
 
+  .terminal2 {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 6px;
+    padding-top: 45px;
+    margin-top: 8px;
+    overflow: hidden;
+    background-color: rgb(15, 15, 16);
+  }
+
+  .terminal2::before {
+    content: "\2022 \2022 \2022";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: rgb(58, 58, 58);
+    color: #c2c3c4;
+    width: 100%;
+    font-size: 2rem;
+    line-height: 0;
+    padding: 14px 0;
+    text-indent: 4px;
+  }
+
+  .terminal2 pre {
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+    color: white;
+    padding: 0 1rem 1rem;
+    margin: 0;
+  }
+
+
+
+
+
   .circle-link {
     height: 40px;
     width: 40px;
@@ -349,17 +386,26 @@
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
 
       <form >
-        <input type="text" name="codificar" [(ngModel)]="codificar" style="width: 450px;" maxlength="200" (keyup.enter)="getCodigficacao(codificar)"  required>
+        <input type="text" name="codificar" [(ngModel)]="codificar" style="width: 450px;" maxlength="200" (keyup.enter)="getCodificacao(codificar)"  required>
       </form>
       <br> 
       
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="48" height="48" (click)="getCodigficacao(codificar)" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg> </a>
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="48" height="48" (click)="getCodificacao(codificar)" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg> </a>
   </div>
  
   <input type="hidden" #selection>
   <!-- Terminal -->
   <div class="terminal" [ngSwitch]="selection.value">
       <pre *ngSwitchDefault wrap="">{{decodificar}}</pre>
+  </div>
+
+  <!-- Terminal -->
+  <div class="terminal2" [ngSwitch]="selection.value"  >
+    <pre *ngSwitchDefault >
+      <div *ngFor="let itens of codificarList" >
+        {{itens}}
+      </div>
+    </pre>
   </div>
 
   <!-- Links -->

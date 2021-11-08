@@ -19,7 +19,7 @@ export class MorseService {
    * @param texto 
    * @returns 
    */
-  public getCodigficacao(texto):  Observable<any> {
+  public getCodificacao(texto):  Observable<any> {
     const httpOptionsPage = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -39,4 +39,28 @@ export class MorseService {
 
     return this.http.get(url, { headers: httpOptionsPage.headers, params: params })
   }
+
+  public getDecodificacao(texto):  Observable<any> {
+    const httpOptionsPage = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000',
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Methods': 'GET',
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Max-Age': '86400'
+      })
+    };
+
+    let params = {};
+    
+    if (texto !== undefined) {
+      params["decodificar"] = texto;
+    }
+
+    return this.http.get(url, { headers: httpOptionsPage.headers, params: params })
+  }
+
+
+
 }
